@@ -54,27 +54,40 @@
 						if(toggle==0){
 							opponent1.push(position);
 							toggle=1
-							//$this.css('background-image','url(pic/x.png)');
+							$this.css('background-image','url(pic/x.png)');
 							opponent1_length = opponent1.length;
 							for(i=0;i<opponent1_length;i++){
 								
 								var position_x = opponent1[i][0];
 								var position_y = opponent1[i][1];
+								
 								//console.log(position_x);
+								var m_counter = 0,tmp_matched = 0;
 								for(j=0;j<10;j++){
 									var pos_x = position_x-4+j;
 									var pos_y = position_y;
+									// If matched
 									for(k=0;k<opponent1_length;k++){
-										
+										if((opponent1[k][0]==pos_x) && (opponent1[k][1]==pos_y)){
+											tmp_matched = 1;
+											console.log(tmp_matched);
+											break;
+										}
+									}
+									if(tmp_matched==1){
+										m_counter = m_counter + 1;
+									}else{
+										m_counter = 0;
 									}
 									
-									
 								}
+								//console.log(m_counter);
+								
 							}
 						}else{
 							opponent2.push(position);
 							toggle=0;
-							//$this.css('background-image','url(pic/o.png)');
+							$this.css('background-image','url(pic/o.png)');
 						}
 						arr.push(position);
 						
