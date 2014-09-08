@@ -36,19 +36,37 @@
 		<script>
 			$(function(){
 				var toggle = 0;
-				var x,y,arr = [];
+				var x,y,arr = [],opponent1 = [] ,opponent2 = [];
 				$('#tbl_main tbody tr td').click(function(){
+					console.clear();
 					$this = $(this);
-					if(toggle==0){
-						toggle=1
-						$this.css('background-image','url(pic/x.png)');
-					}else{
-						toggle=0;
-						$this.css('background-image','url(pic/o.png)');
+					var position = [$this.index(),$this.parent().index()];
+					
+					var matched = 0,arr_length = arr.length;
+					
+					for(i=0;i<arr_length;i++){
+						if((arr[i][0] === position[0]) && (arr[i][1] === position[1]) ){
+							matched = 1;
+							break;
+						}						
+					}
+					if(matched==0){
+						if(toggle==0){
+							opponent1.push(position);
+							toggle=1
+							$this.css('background-image','url(pic/x.png)');
+						}else{
+							opponent2.push(position);
+							toggle=0;
+							$this.css('background-image','url(pic/o.png)');
+						}
+						arr.push(position);
+						
 					}
 					
-					arr.push([$this.index(),$this.parent().index()]);
-					console.log(arr);
+					
+					
+					
 				});
 			});			
 		</script>
