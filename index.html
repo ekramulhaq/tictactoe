@@ -70,12 +70,15 @@
 									for(k=0;k<opponent1_length;k++){
 										if((opponent1[k][0]==pos_x) && (opponent1[k][1]==pos_y)){
 											tmp_matched = 1;
-											console.log(tmp_matched);
+											//console.log(tmp_matched);
 											break;
 										}
 									}
 									if(tmp_matched==1){
 										m_counter = m_counter + 1;
+										if(m_counter==5){
+											console.log('matched in a row');
+										}
 									}else{
 										m_counter = 0;
 									}
