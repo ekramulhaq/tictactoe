@@ -36,14 +36,17 @@
 		<script>
 			$(function(){
 				var toggle = 0;
-				var x,y,arr = [],opponent1 = [] ,opponent2 = [],end_game = 0;
+				var x,y,arr = [],opponent1 = [] ,opponent2 = [],end_game = 0,winner;
 				$('#tbl_main tbody tr td').click(function(){
 					console.clear();
 					$this = $(this);
 					var position = [$this.index(),$this.parent().index()];
 					
 					var matched = 0,arr_length = arr.length;
-					
+					if(end_game == 1){
+						alert(winner + ' Wins');
+						return false;
+					}
 					for(i=0;i<arr_length;i++){
 						if((arr[i][0] === position[0]) && (arr[i][1] === position[1]) ){
 							matched = 1;
@@ -89,7 +92,8 @@
 									
 								}
 								if(end_game==1){
-									alert("X win");
+									winner = 'X';
+									alert("X wins");
 									break;
 								}
 								m_counter = 0;
@@ -118,7 +122,8 @@
 									
 								}
 								if(end_game==1){
-									alert("X win");
+									winner = 'X';
+									alert("X wins");
 									break;
 								}
 								m_counter = 0;
@@ -147,7 +152,8 @@
 									
 								}
 								if(end_game==1){
-									alert("X win");
+									winner = 'X';
+									alert("X wins");
 									break;
 								}
 								m_counter = 0;
@@ -177,7 +183,8 @@
 								}
 								
 								if(end_game==1){
-									alert("X win");
+									winner = 'X';
+									alert("X wins");
 									break;
 								}
 								
@@ -188,6 +195,140 @@
 							opponent2.push(position);
 							toggle=0;
 							$this.css('background-image','url(pic/o.png)');
+							
+							opponent2_length = opponent2.length;
+							for(i=0;i<opponent2_length;i++){
+								
+								var position_x = opponent2[i][0];
+								var position_y = opponent2[i][1];
+								
+								//console.log(position_x);
+								var m_counter = 0;
+								for(j=0;j<10;j++){
+									var tmp_matched = 0;
+									var pos_x = position_x-4+j;
+									var pos_y = position_y;
+									// If matched
+									for(k=0;k<opponent2_length;k++){
+										if((opponent2[k][0]==pos_x) && (opponent2[k][1]==pos_y)){
+											tmp_matched = 1;
+											//console.log(tmp_matched);
+											console.log('matched in a row'+'  '+ pos_x + ','+pos_y);
+											
+											break;
+										}
+									}
+									if(tmp_matched==1){
+										m_counter = m_counter + 1;
+										if(m_counter==5){
+											console.log('matched 5 in a row');
+											end_game = 1;
+										}
+									}else{
+										m_counter = 0;
+									}
+									
+								}
+								if(end_game==1){
+									winner = 'O';
+									alert("O wins");
+									break;
+								}
+								m_counter = 0;
+								for(j=0;j<10;j++){
+									var tmp_matched = 0;
+									var pos_x = position_x;
+									var pos_y = position_y-4+j;
+									// If matched
+									for(k=0;k<opponent2_length;k++){
+										if((opponent2[k][0]==pos_x) && (opponent2[k][1]==pos_y)){
+											tmp_matched = 1;
+											//console.log(tmp_matched);
+											console.log('matched in a row'+'  '+ pos_x + ','+pos_y);
+											break;
+										}
+									}
+									if(tmp_matched==1){
+										m_counter = m_counter + 1;
+										if(m_counter==5){
+											console.log('matched 5 in a row');
+											end_game = 1;
+										}
+									}else{
+										m_counter = 0;
+									}
+									
+								}
+								if(end_game==1){
+									winner = 'O';
+									alert("O wins");
+									break;
+								}
+								m_counter = 0;
+								for(j=0;j<10;j++){
+									var tmp_matched = 0;
+									var pos_x = position_x-4+j;
+									var pos_y = position_y-4+j;
+									// If matched
+									for(k=0;k<opponent2_length;k++){
+										if((opponent2[k][0]==pos_x) && (opponent2[k][1]==pos_y)){
+											tmp_matched = 1;
+											//console.log(tmp_matched);
+											console.log('matched in a row'+'  '+ pos_x + ','+pos_y);
+											break;
+										}
+									}
+									if(tmp_matched==1){
+										m_counter = m_counter + 1;
+										if(m_counter==5){
+											console.log('matched 5 in a row');
+											end_game = 1;
+										}
+									}else{
+										m_counter = 0;
+									}
+									
+								}
+								if(end_game==1){
+									winner = 'O';
+									alert("O wins");
+									break;
+								}
+								m_counter = 0;
+								for(j=0;j<10;j++){
+									var tmp_matched = 0;
+									var pos_x = position_x+4-j;
+									var pos_y = position_y-4+j;
+									// If matched
+									for(k=0;k<opponent2_length;k++){
+										if((opponent2[k][0]==pos_x) && (opponent2[k][1]==pos_y)){
+											tmp_matched = 1;
+											//console.log(tmp_matched);
+											console.log('matched in a row'+'  '+ pos_x + ','+pos_y);
+											break;
+										}
+									}
+									if(tmp_matched==1){
+										m_counter = m_counter + 1;
+										if(m_counter==5){
+											console.log('matched 5 in a row');
+											end_game = 1;
+										}
+									}else{
+										m_counter = 0;
+									}
+									
+								}
+								
+								if(end_game==1){
+									winner = 'O';
+									alert("O wins");
+									break;
+								}
+								
+							}
+							
+							
 						}
 						arr.push(position);
 						
